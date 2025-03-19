@@ -1,0 +1,111 @@
+.formContainer {
+    margin: 20px auto;
+    max-width: 800px; /* Limit width for better readability */
+    padding: 20px;
+    background-color: #ffffff; /* White background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  /* Form Styling */
+  .form {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 15px; /* More spacing between elements */
+    align-items: center;
+    padding: 15px;
+    background-color: #f9f9f9; /* Light gray background */
+    border-radius: 6px;
+  }
+  
+  .form input {
+    flex: 1; /* Inputs take equal space */
+    min-width: 150px; /* Minimum width for smaller screens */
+    padding: 10px;
+    border: 2px solid #ddd; /* Thicker, softer border */
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease; /* Smooth transition */
+  }
+  
+  .form input:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Glow effect */
+  }
+  
+  .form button {
+    padding: 10px 20px;
+    background-color: #28a745; /* Green for Add/Edit */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease; /* Smooth hover and click */
+  }
+  
+  .form button:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  .form button:active {
+    transform: scale(0.98); /* Slight press effect */
+  }
+  
+  /* Flow List Styling */
+  .flowList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .flowList li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background-color: #f5f5f5; /* Light gray background */
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .flowList li:hover {
+    background-color: #ececec; /* Slightly darker on hover */
+  }
+  
+  .flowList button {
+    padding: 6px 12px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+  }
+  
+  /* Edit Button */
+  .flowList button:first-of-type {
+    background-color: #ffc107; /* Yellow for Edit */
+    color: #333;
+  }
+  
+  .flowList button:first-of-type:hover {
+    background-color: #e0a800; /* Darker yellow on hover */
+  }
+  
+  /* Delete Button */
+  .flowList button:last-of-type {
+    background-color: #dc3545; /* Red for Delete */
+    color: white;
+  }
+  
+  .flowList button:last-of-type:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }
+  
+  .flowList button:active {
+    transform: scale(0.95); /* Slight press effect */
+  }

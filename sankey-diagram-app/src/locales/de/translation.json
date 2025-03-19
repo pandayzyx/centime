@@ -1,0 +1,13 @@
+{
+    "header": "Finanzfluss",
+    "add": "Hinzufügen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "income": "Einkommen",
+    "expenditure": "Ausgaben",
+    "salary": "Gehalt",
+    "bills": "Rechnungen",
+    "electric_bill": "Stromrechnung",
+    "mobile_bill": "Mobilfunkrechnung",
+    "language": "Sprache"
+  }

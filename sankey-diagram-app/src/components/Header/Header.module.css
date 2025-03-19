@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    height: 40px;
+  }
+  
+  .languageSwitcher {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }

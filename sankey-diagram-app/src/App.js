@@ -1,24 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData, addEntry, deleteEntry, updateEntry } from "./features/dataSlice";
-import { SankeyChart } from "./components/SankeyChart";
-import { Header } from "./components/Header";
+import { fetchChartData } from "./redux/slices/dataSlice";
+import Header from "./components/Header/Header";
+import SankeyChart from "./components/SankeyChart/SankeyChart";
+import EditForm from "./components/EditForm/EditForm";
 import { useTranslation } from "react-i18next";
+import styles from "./App.module.css";
 
-export default function App() {
+function App() {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
-  const data = useSelector((state) => state.data.items);
+  const { i18n } = useTranslation();
+  const { income, expenditure } = useSelector((state) => state.data);
 
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch(fetchChartData());
   }, [dispatch]);
 
   return (
-    <div className="container mx-auto p-4">
+    <div className={styles.app}>
       <Header />
-      <h1 className="text-center text-2xl font-bold my-4">{t("title")}</h1>
-      <SankeyChart data={data} onAdd={addEntry} onDelete={deleteEntry} onUpdate={updateEntry} />
+      <SankeyChart data={{ income, expenditure }} />
+      <EditForm />
     </div>
   );
 }
+
+export default App;

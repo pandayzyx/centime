@@ -1,0 +1,13 @@
+{
+    "header": "Financial Flow",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "income": "Income",
+    "expenditure": "Expenditure",
+    "salary": "Salary",
+    "bills": "Bills",
+    "electric_bill": "Electric Bill",
+    "mobile_bill": "Mobile Bill",
+    "language": "Language"
+  }
