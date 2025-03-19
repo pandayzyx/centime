@@ -3,36 +3,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFlow, editFlow, deleteFlow } from '../../redux/slices/dataSlice';
 import { useTranslation } from 'react-i18next';
 import styles from './EditForm.module.css';
-import { v4 as uuidv4 } from 'uuid';
 
 const EditForm = () => {
   const { flows } = useSelector((state) => state.data);
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const [formData, setFormData] = useState({ from: '', to: '', amount: '' });
-  const [editIndex, setEditIndex] = useState(null);
+  const [formData, setFormData] = useState({ id: null, from: '', to: '', amount: '' });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { from, to, amount } = formData;
-    if (editIndex !== null) {
-      dispatch(editFlow({ index: editIndex, newFlow: [from, to, Number(amount)] }));
-      setEditIndex(null);
+    const { id, from, to, amount } = formData;
+    if (id) {
+      dispatch(editFlow({ id, newFlow: { from, to, amount: Number(amount) } }));
     } else {
-      dispatch(addFlow([from, to, Number(amount)]));
+      dispatch(addFlow({ from, to, amount: Number(amount) }));
     }
-    setFormData({ from: '', to: '', amount: '' });
+    setFormData({ id: null, from: '', to: '', amount: '' });
   };
 
-  const handleEdit = (index) => {
-    const [from, to, amount] = flows[index];
-    setFormData({ from, to, amount });
-    setEditIndex(index);
+  const handleEdit = (id) => {
+    const flow = flows.find((f) => f.id === id);
+    setFormData({ id: flow.id, from: flow.from, to: flow.to, amount: flow.amount });
   };
 
-  const handleDelete = (index) => {
-    dispatch(deleteFlow(index));
+  const handleDelete = (id) => {
+    dispatch(deleteFlow(id));
   };
 
   return (
@@ -59,15 +55,15 @@ const EditForm = () => {
           onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
           required
         />
-        <button type="submit">{editIndex !== null ? t('edit') : t('add')}</button>
+        <button type="submit">{formData.id ? t('edit') : t('add')}</button>
       </form>
 
       <ul className={styles.flowList}>
-        {flows.map(([from, to, amount], index) => (
-          <li key={uuidv4()}>
-            {t(from)} → {t(to)}: {amount}
-            <button onClick={() => handleEdit(index)}>{t('edit')}</button>
-            <button onClick={() => handleDelete(index)}>{t('delete')}</button>
+        {flows.map((flow) => (
+          <li key={flow.id}>
+            {t(flow.from)} → {t(flow.to)}: {flow.amount}
+            <button onClick={() => handleEdit(flow.id)}>{t('edit')}</button>
+            <button onClick={() => handleDelete(flow.id)}>{t('delete')}</button>
           </li>
         ))}
       </ul>

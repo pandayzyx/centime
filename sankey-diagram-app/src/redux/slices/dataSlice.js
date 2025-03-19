@@ -1,9 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchInitialData } from '../../services/mockApi';
 
-// Async thunk to fetch initial data from mock API
-export const fetchChartData = createAsyncThunk('data/fetchData', async () => {
-  const response = await fetchInitialData(); // Calls mock API
+export const fetchChartData = createAsyncThunk('data/fetchChartData', async () => {
+  const response = await fetchInitialData();
   return response;
 });
 
@@ -13,19 +12,26 @@ const initialState = {
   error: null,
 };
 
+const generateId = () => Math.random().toString(36).substring(2, 11);
+
 const dataSlice = createSlice({
   name: 'data',
   initialState,
   reducers: {
     addFlow(state, action) {
-      state.flows.push(action.payload);
+      const { from, to, amount } = action.payload;
+      state.flows.push({ id: generateId(), from, to, amount });
     },
     editFlow(state, action) {
-      const { index, newFlow } = action.payload;
-      state.flows[index] = newFlow;
+      const { id, newFlow } = action.payload;
+      const flowIndex = state.flows.findIndex((flow) => flow.id === id);
+      if (flowIndex !== -1) {
+        state.flows[flowIndex] = { ...state.flows[flowIndex], ...newFlow };
+      }
     },
     deleteFlow(state, action) {
-      state.flows.splice(action.payload, 1);
+      const id = action.payload;
+      state.flows = state.flows.filter((flow) => flow.id !== id);
     },
   },
   extraReducers: (builder) => {
@@ -36,7 +42,7 @@ const dataSlice = createSlice({
       })
       .addCase(fetchChartData.fulfilled, (state, action) => {
         state.loading = false;
-        state.flows = action.payload; // Populates flows with mock API data
+        state.flows = action.payload;
       })
       .addCase(fetchChartData.rejected, (state, action) => {
         state.loading = false;

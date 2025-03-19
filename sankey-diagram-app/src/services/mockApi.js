@@ -1,12 +1,12 @@
 export const fetchInitialData = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve([
-          ['Salary', 'Bills', 3000],
-          ['Salary', 'Savings', 2000],
-          ['Bills', 'Electric Bill', 1000],
-          ['Bills', 'Mobile Bill', 2000],
-        ]);
-      }, 500); // Simulate API delay
-    });
-  };
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve([
+        { id: '1', from: 'Salary', to: 'Bills', amount: 3000 },
+        { id: '2', from: 'Salary', to: 'Savings', amount: 2000 },
+        { id: '3', from: 'Bills', to: 'Electric Bill', amount: 1000 },
+        { id: '4', from: 'Bills', to: 'Mobile Bill', amount: 2000 },
+      ]);
+    }, 500); // Simulate API delay
+  });
+};
